@@ -1,7 +1,8 @@
 # Rendszerterv
 
 ## 1. A rendszer célja
-
+A rendszer célja, hogy a túrázni vágyó felhasználók könnyedén tudjanak találni számukra megfelelő túra eseményeket. Az alkalmazás lehetővé teszi a túrákra való feljelentkezést, amelyekről a túra idejének közeledtével pontos, naprakész és gyors tájékoztatást kapnak.
+Ehhez mindössze elegendő egy egyszerű regisztráció, illetve a túrára való jelentkezés és a felhasználó máris megszabadul a hosszas e-mailezésektől, körülményes egyeztetésektől. Hiszen a már említett módon az eseményre feljelentkezők automatikus értesítést kapnak az esetleges változásokról és információkról, megkönnyítve ezzel a túraszervezők munkáját is. Továbbá az alkalmazás célja, hogy könnyen kezelhető és átlátható, letisztult felületet biztosítson a felek számára.
 
 ## 2. Projektterv
 
