@@ -5,7 +5,18 @@ A rendszer célja, hogy a túrázni vágyó felhasználók könnyedén tudjanak 
 Ehhez mindössze elegendő egy egyszerű regisztráció, illetve a túrára való jelentkezés és a felhasználó máris megszabadul a hosszas e-mailezésektől, körülményes egyeztetésektől. Hiszen a már említett módon az eseményre feljelentkezők automatikus értesítést kapnak az esetleges változásokról és információkról, megkönnyítve ezzel a túraszervezők munkáját is. Továbbá az alkalmazás célja, hogy könnyen kezelhető és átlátható, letisztult felületet biztosítson a felek számára.
 
 ## 2. Projektterv
+- **Developer Team**: Vámos Ákos János, Vámos Márton István
 
+| Funkció                     | Feladat                                             |
+| ----------------------------| ----------------------------------------------------|
+| Rendszerterv                | A rendszer átfogó, részletesdokumentációja          |
+| Adattárolás                 | Az adatbázis megvalósítása                          |
+| Regisztráció                | A regisztrációs felület létrehozása                 |
+| Bejelentkezés               | A bejelentkezési felület létrehozása                |
+| Főoldal                     | A főoldal létrehozása, események megjelenítése      |
+| Túra létrehozása            | A "create" nézet létrehozása                        |
+| Túra jelentkezés            | A felhasználó feljelentkeztetése a túrára           |
+| Túráról lejelentkezés       | A felhasználó lejelentkeztetése a túráról           |
 
 ## 3. Üzleti feladatok modellje
 
