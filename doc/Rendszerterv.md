@@ -103,7 +103,11 @@ Ehhez mindössze elegendő egy egyszerű regisztráció, illetve a túrára val�
 
 
 ## 11. Implementációs terv
-
+- Az OCP (Open-Closed Principle) és a SRP (Single Responsiblity Principle) betartásával készüljön az alkalmazás java programnyelven.
+- Az alkalmazásban felhasznált további tervezési minták a Stratégia és az Observer. 
+- Az adatok tárolása adatbázisban történik meg.
+- Logolás használata
+- Unit tesztek használata 
 
 
 ## 12. Használt technológiák
