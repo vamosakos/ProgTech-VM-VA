@@ -84,6 +84,9 @@ Ehhez mindössze elegendő egy egyszerű regisztráció, illetve a túrára val�
 
 
 ## 7. Fejlesztői eszközök
+- IntelliJ IDEA Ultimate
+- Visual Studio Code
+- XAMPP 
 
 
 
