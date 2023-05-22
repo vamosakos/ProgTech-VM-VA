@@ -112,15 +112,15 @@ A felhasználók adatai titkosítással védeve vannak.
 
 
 ## 7. Architekturális terv
-
+*WIP*
 
 
 ## 8. Adatbázis terv
-
+*WIP*
 
 
 ## 9. Telepítési terv
-
+*WIP*
 
 
 ## 10. Implementációs terv
@@ -131,7 +131,17 @@ A felhasználók adatai titkosítással védeve vannak.
 - Unit tesztek használata 
 
 ## 11. Tesztterv
-
+Az alkalmazáson meglévő funkciók tesztelésére unit teszteket alkalmazunk.
+- [ ] Regisztráció - érvényes inputokkal
+- [ ] Regisztráció - érvénytelen inputokkal
+- [ ] Bejelentkezés - érvényes inputokkal
+- [ ] Bejelentkezés - érvénytelen inputokkal
+- [ ] Túraesemény létrehozása
+- [ ] Túraesemény törlése
+- [ ] Túraeseményre jelentkezés
+- [ ] (Observer tervezési minta működése)
+- [ ] (Stratégia tervezési mintha működése)
+- [ ] Gombok megfelelő működése
 
 
 ## 12. Használt technológiák
