@@ -35,16 +35,48 @@ Ehhez mindössze elegendő egy egyszerű regisztráció, illetve a túrára val�
 
 ## 5. Funkcionális terv
 ### Rendszerszereplők:
-
+- **Vendég**
+- **Felhasználó**
+- **Adminisztrátor**
 
 ### Rendszerhasználati esetek és lefutásaik:
+**Vendég (Regisztráció nélküli fiók):**
+- Amennyiben rendelkezik érvényes fiókkal, bejelentkezhet a "Bejelentkezés" menüpontra kattintva
+- Felhasználói fiók hiányában regisztrálhat a "Regisztrációs" fül alatt
 
+**Felhasználó:**
+- Bejelentkezhet felhasználói fiókjába a "Bejelentkezés" menüpontra kattintva
+- A "Jelentkezés" gombra kattintva feliratkozik a túraeseményre
+- A "Lejelentkezés" gombra kattintva leiratkozhat a túraeseményről
+- Kijelentkezhet fiókjából a "Kijelentkezés" gomb segítségével
+
+**Adminisztrátor (túraszervező):**
+- Bejelentkezhet adminisztrátori fiókjába a "Bejelentkezés" menü pontra kattintva
+- Jogosultsága van új túraesemények létrehozására/feltöltésére, valamint a már meglévők módosítására és archiválására
+- Kijelentkezhet fiókjából a "Kijelentkezés" gomb segítségével
 
 ### Menü-hierarchiák:
+- **REGISZTRÁCIÓ**
+    - Bejelentkezés (Már van meglévő fiókja?)
 
+- **BEJELENTKEZÉS**
+    - Regisztráció (Még nem rendelkezem meglévő fiókkal)
+
+- **TÚRAESEMÉNYEK**
+    - Túraeseményre jelentkezés
+    - Túraesemény szerkesztése (adminisztrátori)
+    - Túraesemény feltöltése (adminisztrátori)
+    - Kijelentkezés
 
 ### Menükhöz tartozó specifikációk:
 
+| Modul       | ID | Név                      | v.  | Kifejtés                                                                 |
+|-------------|----|--------------------------|-----|--------------------------------------------------------------------------|
+| Jogosultság | T1 | Bejelentkezési felület   | 1.0 | A felhasználó az email címe és jelszava segítségével bejelentkezhet. Ha a megadott email vagy jelszó nem megfelelő, akkor a felhasználó hibaüzenetet kap.                                                               |
+| Jogosultság | T2 | Regisztráció | 1.0 | A felhasználó az email címével és jelszavának megadásával regisztrálja magát. A jelszó tárolása kódolva történik az adatbázisban. Ha valamelyik adat ezek közül hiányzik vagy nem felel meg a követelményeknek, akkor a rendszer értesíti erről a felhasználót. |
+| Jogosultság | T3 | Kijelentkezés | 1.0 | A bejelentkezett felhasználók a kijelentkezés gombra kattintva kitudnak jelentkezni, amely a bejelentkező felületre irányíja őket. |
+| Feltöltés | T4 | Túraesemény feltöltése | 1.0 | A túrát szervezőknek lehetőségük van túraesemények feltöltésére. |
+| Szerkesztés | T5 | Túraesemény szerkesztése | 1.0 | A hozzáadott esemény utólagos szerkesztésének lehetősége. |
 
 
 ## 6. Fizikai Környezet
