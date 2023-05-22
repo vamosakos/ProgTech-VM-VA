@@ -19,7 +19,7 @@ Ehhez mindössze elegendő egy egyszerű regisztráció, illetve a túrára val�
 | Túráról lejelentkezés       | A felhasználó lejelentkeztetése a túráról           |
 
 ## 3. Üzleti feladatok modellje
-
+![Üzleti feladatok modellje](https://media.discordapp.net/attachments/323508728508710913/1110324215237845212/3_Uzleti_feladatok_modellje.png)
 
 
 ## 4. Követelmények
