@@ -24,12 +24,32 @@ Ehhez mindössze elegendő egy egyszerű regisztráció, illetve a túrára val�
 
 ## 4. Követelmények
 ### Funkcionális követelmények:
-
+Felhasználó adatainak tárolása
+Bejelentkezés gomb: email cím és jelszó együttes megadásával beléphetünk a saját fiókunkba.
+Regisztrációs gomb: az itt megadott adatainkkal kitöltve tudunk fiókot létrehozni.
+Túraesemény feltöltése gomb: Túraesemény feltöltésére szolgál.
+Túraesemény szerkesztése gomb: Túraesemény utólagos szerkesztése miatt.
+Túraesemény archiválása: Soft delete
 
 ### Nem funkcionális követelmények:
-
+A felhasználók nem jutnak hozzá más felhasználók személyes adataihoz a nevükön és az azonosítókon kívül.
 
 ### Törvényi előírások, szabványok
+Az Európai Parlament És A Tanács (EU) 2016/679 rendelete
+
+Az információs önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvény 4.§ (1) és (2) bekezdései
+
+Trello (Kanban-tábla)
+
+Github (a kóddal való együttműködés)
+
+IntelliJ IDEA Ultimate (a kódoláshoz használt IDE)
+
+Sublime Text vagy egyéb szöveg- és forráskód-szerkesztő (a dokumentáció kidolgozásához, markdown kiterjesztésű formátumban)
+
+Dbdiagramm - adatbázisterv megvalósításához
+
+Diagrams.net - az ábárák megvalósításához
 
 
 
