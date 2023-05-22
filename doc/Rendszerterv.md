@@ -99,41 +99,42 @@ Diagrams.net - az ábárák megvalósításához
 | Szerkesztés | T5 | Túraesemény szerkesztése | 1.0 | A hozzáadott esemény utólagos szerkesztésének lehetősége. |
 
 
-## 6. Fizikai Környezet
+## 6. Fizikai környezet
+A program asztali alkalmazásnak készül, amelyhez egy egyszerű regisztráció társul. 
+Megvásárolt komponenseket nem tartalmaz. 
+A felhasználók adatai titkosítással védeve vannak.
 
-
-
-## 7. Fejlesztői eszközök
+### Fejlesztői eszközök
 - IntelliJ IDEA Ultimate
 - Visual Studio Code
 - XAMPP 
 
 
 
-## 8. Architekturális terv
+## 7. Architekturális terv
 
 
 
-## 9. Adatbázis terv
+## 8. Adatbázis terv
 
 
 
-## 10. Telepítési terv
+## 9. Telepítési terv
 
 
 
-## 11. Implementációs terv
+## 10. Implementációs terv
 - Az OCP (Open-Closed Principle) és a SRP (Single Responsiblity Principle) betartásával készüljön az alkalmazás java programnyelven.
 - Az alkalmazásban felhasznált további tervezési minták a Stratégia és az Observer. 
 - Az adatok tárolása adatbázisban történik meg.
 - Logolás használata
 - Unit tesztek használata 
 
-## 12. Tesztterv
+## 11. Tesztterv
 
 
 
-## 13. Használt technológiák
+## 12. Használt technológiák
 - Trello: kanban tábla a projekt szervezéséhez és kezeléséhez
 - Git: verziókezelés
 - MySQL / MariaDB: adatbázisszerver
