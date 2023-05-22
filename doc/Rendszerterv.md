@@ -129,11 +129,13 @@ Diagrams.net - az ábárák megvalósításához
 - Logolás használata
 - Unit tesztek használata 
 
-
-## 12. Használt technológiák
-
+## 12. Tesztterv
 
 
-## 13. Karbantartási terv
 
-
+## 13. Használt technológiák
+- Trello: kanban tábla a projekt szervezéséhez és kezeléséhez
+- Git: verziókezelés
+- MySQL / MariaDB: adatbázisszerver
+- Visual Studio Code: dokumentáció megírásához
+- IntelliJ IDEA Ultimate: programkód megírásához
