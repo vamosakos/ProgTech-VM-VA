@@ -13,6 +13,8 @@ public class RegistrationFrom extends JDialog{
     private JButton btnCancel;
     private JPanel registerPanel;
 
+    Encryptor encryptor = new Encryptor();
+
     public RegistrationFrom(JFrame parent) {
         super(parent);
         setTitle("Create a new account");
@@ -89,7 +91,7 @@ public class RegistrationFrom extends JDialog{
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, full_name);
             preparedStatement.setString(2, email);
-            preparedStatement.setString(3, password);
+            preparedStatement.setString(3, encryptor.encryptPassword(password));
 
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows > 0) {
