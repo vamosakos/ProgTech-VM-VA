@@ -12,7 +12,8 @@ public class Main {
         else {
             System.out.println("Registration canceled");
         }
-         */
+        */
+
 
         LoginForm loginForm = new LoginForm(null);
         User user = loginForm.user;

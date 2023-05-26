@@ -46,7 +46,7 @@ public class RegistrationFrom extends JDialog{
         String email = tfEmail.getText();
         String password = String.valueOf(pfPassword.getPassword());
         String passwordAgain = String.valueOf(pfPasswordAgain.getPassword());
-
+        int permission = 0;
         if (full_name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "Please enter all fields",
@@ -63,7 +63,7 @@ public class RegistrationFrom extends JDialog{
             return;
         }
 
-        user = addUserToDatabase(full_name, email, password);
+        user = addUserToDatabase(full_name, email, password, permission);
         if (user != null) {
             dispose();
         }
@@ -76,7 +76,7 @@ public class RegistrationFrom extends JDialog{
     }
 
     public User user;
-    private User addUserToDatabase(String full_name, String email, String password) {
+    private User addUserToDatabase(String full_name, String email, String password, int permission) {
         User user = null;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
         final String USERNAME = "root";
@@ -86,12 +86,13 @@ public class RegistrationFrom extends JDialog{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
             Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO users (full_name, email, password) " +
-                    "VALUES (?, ?, ?)";
+            String sql = "INSERT INTO users (full_name, email, password, permission) " +
+                    "VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, full_name);
             preparedStatement.setString(2, email);
             preparedStatement.setString(3, encryptor.encryptPassword(password));
+            preparedStatement.setInt(4, 0);
 
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows > 0) {
@@ -99,6 +100,7 @@ public class RegistrationFrom extends JDialog{
                 user.full_name = full_name;
                 user.email = email;
                 user.password = password;
+                user.permission = permission;
             }
 
             stmt.close();
