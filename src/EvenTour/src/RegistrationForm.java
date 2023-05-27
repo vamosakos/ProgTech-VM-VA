@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class RegistrationFrom extends JDialog{
+public class RegistrationForm extends JDialog{
     private JTextField tfFullName;
     private JTextField tfEmail;
     private JPasswordField pfPasswordAgain;
@@ -15,7 +15,7 @@ public class RegistrationFrom extends JDialog{
 
     Encryptor encryptor = new Encryptor();
 
-    public RegistrationFrom(JFrame parent) {
+    public RegistrationForm(JFrame parent) {
         super(parent);
         setTitle("Create a new account");
         setContentPane(registerPanel);

@@ -1,11 +1,9 @@
-import com.mysql.cj.log.Log;
-
 public class Main {
     public static void main(String[] args) {
         /*
-        RegistrationFrom regFrom = new RegistrationFrom(null);
+        RegistrationForm regForm = new RegistrationForm(null);
 
-        User user = regFrom.user;
+        User user = regForm.user;
         if (user != null) {
             System.out.println("Successful registration of: " + user.full_name);
         }
@@ -21,6 +19,7 @@ public class Main {
         if (user != null) {
             System.out.println("Successful Authentication of: " + user.full_name);
             System.out.println("            Email: " + user.email);
+            EvenTourFormA evenTourFormA = new EvenTourFormA(null);
         }
         else {
             System.out.println("Authentication canceled");
