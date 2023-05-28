@@ -27,6 +27,11 @@ public class EvenTourFormUser extends JFrame{
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         evenTourUser = user;
+
+        if (evenTourUser.permission == 1)
+        {
+            EvenTourFormAdmin evenTourFormAdmin = new EvenTourFormAdmin(null);
+        }
         tableLoad();
 
         btnSignUp.addActionListener(new ActionListener() {

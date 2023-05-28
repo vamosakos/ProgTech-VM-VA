@@ -34,7 +34,7 @@ public class LoginForm extends JDialog {
                     dispose();
                     // stratégia...
                     EvenTourFormUser evenTourFormUser = new EvenTourFormUser(user);
-                    // EvenTourFormAdmin evenTourFormAdmin = new EvenTourFormAdmin(null);
+                    //EvenTourFormAdmin evenTourFormAdmin = new EvenTourFormAdmin(null);
                 }
                 else {
                     JOptionPane.showMessageDialog(LoginForm.this,
@@ -79,6 +79,7 @@ public class LoginForm extends JDialog {
                 user.full_name = resultSet.getString("full_name");
                 user.email = resultSet.getString("email");
                 user.password = resultSet.getString("password");
+                user.permission = resultSet.getInt("permission");
             }
 
             stmt.close();

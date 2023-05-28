@@ -72,7 +72,7 @@ public class RegistrationForm extends JDialog{
             return;
         }
 
-        if(!full_name.matches("^[a-zA-Z]+$")) {
+        if(!full_name.matches("^[^-\\s][a-zA-Z_\\s-]+$")) {
             JOptionPane.showMessageDialog(this,
                     "The name cannot contain number",
                     "Try again",
@@ -123,7 +123,7 @@ public class RegistrationForm extends JDialog{
             preparedStatement.setString(1, full_name);
             preparedStatement.setString(2, email);
             preparedStatement.setString(3, encryptor.encryptPassword(password));
-            preparedStatement.setInt(4, 0);
+            preparedStatement.setInt(4, permission);
 
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows > 0) {
