@@ -78,6 +78,17 @@ public class EvenTourFormA extends JDialog{
         }
     }
     private void addTour() {
+        try {
+            int d = Integer.parseInt(tfDistance.getText());
+            int p = Integer.parseInt(tfPrice.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter all fields",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         String route = tfRoute.getText();
         Date date = datechooser.getDate();
         int distance = Integer.parseInt(tfDistance.getText());
@@ -104,6 +115,17 @@ public class EvenTourFormA extends JDialog{
         }
     }
     private void deleteTour() {
+
+        try {
+            int i = Integer.parseInt(tfId.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter an id number",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
 
         int id = Integer.parseInt(tfId.getText());
 
