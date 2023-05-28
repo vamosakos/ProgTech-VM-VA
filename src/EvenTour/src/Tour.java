@@ -5,6 +5,6 @@ public class Tour {
     public int id;
     public String route;
     public Date date;
-    public int length;
+    public int distance;
     public int price;
 }

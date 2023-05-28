@@ -13,7 +13,7 @@ public class EvenTourFormA extends JDialog{
     private JPanel evenTourPanelA;
     private JTextField tfRoute;
     private JPanel jpDatePicker;
-    private JTextField tfLength;
+    private JTextField tfDistance;
     private JTextField tfPrice;
     private JButton btnAdd;
     private JTable evenTourDashboardTable;
@@ -21,8 +21,9 @@ public class EvenTourFormA extends JDialog{
     private JButton btnLogout;
     private JTextField tfId;
 
-
+    public Tour tour;
     JDateChooser datechooser = new JDateChooser();
+    PreparedStatement pst;
 
 
     public EvenTourFormA(JFrame parent) {
@@ -42,8 +43,6 @@ public class EvenTourFormA extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) { addTour(); }
         });
-
-
         btnLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,7 +50,6 @@ public class EvenTourFormA extends JDialog{
                 LoginForm loginForm = new LoginForm(null);
             }
         });
-
         btnDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { deleteTour(); }
@@ -61,7 +59,6 @@ public class EvenTourFormA extends JDialog{
     }
 
 
-    PreparedStatement pst;
     private void tableLoad() {
         Tour tour = null;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
@@ -83,7 +80,7 @@ public class EvenTourFormA extends JDialog{
     private void addTour() {
         String route = tfRoute.getText();
         Date date = datechooser.getDate();
-        int length = Integer.parseInt(tfLength.getText());
+        int distance = Integer.parseInt(tfDistance.getText());
         int price = Integer.parseInt(tfPrice.getText());
         if (route.isEmpty() || date == null) {
             JOptionPane.showMessageDialog(this,
@@ -92,7 +89,7 @@ public class EvenTourFormA extends JDialog{
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        tour = addTourToDatabase(route, date, length, price);
+        tour = addTourToDatabase(route, date, distance, price);
         if (tour != null) {
             JOptionPane.showMessageDialog(this,
                     "Tour successfully added",
@@ -106,7 +103,6 @@ public class EvenTourFormA extends JDialog{
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-
     private void deleteTour() {
 
         int id = Integer.parseInt(tfId.getText());
@@ -127,8 +123,9 @@ public class EvenTourFormA extends JDialog{
 
 
     }
-    public Tour tour;
-    private Tour addTourToDatabase(String route, Date date, int length, int price) {
+
+
+    private Tour addTourToDatabase(String route, Date date, int distance, int price) {
         Tour tour = null;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
         final String USERNAME = "root";
@@ -140,12 +137,12 @@ public class EvenTourFormA extends JDialog{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
             Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO tours (route, date, length, price) " +
+            String sql = "INSERT INTO tours (route, date, distance, price) " +
                     "VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, route);
             preparedStatement.setObject(2, date);
-            preparedStatement.setInt(3, length);
+            preparedStatement.setInt(3, distance);
             preparedStatement.setInt(4, price);
 
             int addedRows = preparedStatement.executeUpdate();
@@ -153,7 +150,7 @@ public class EvenTourFormA extends JDialog{
                 tour = new Tour();
                 tour.route = route;
                 tour.date = date;
-                tour.length = length;
+                tour.distance = distance;
                 tour.price = price;
             }
 
@@ -201,5 +198,4 @@ public class EvenTourFormA extends JDialog{
 
         return tour;
     }
-
 }

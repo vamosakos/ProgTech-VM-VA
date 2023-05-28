@@ -13,6 +13,7 @@ public class RegistrationForm extends JDialog{
     private JButton btnBackToLogin;
     private JPanel registerPanel;
 
+    public User user;
     Encryptor encryptor = new Encryptor();
 
     public RegistrationForm(JFrame parent) {
@@ -81,7 +82,7 @@ public class RegistrationForm extends JDialog{
         }
     }
 
-    public User user;
+
     private User addUserToDatabase(String full_name, String email, String password, int permission) {
         User user = null;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";

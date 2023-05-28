@@ -11,7 +11,9 @@ public class LoginForm extends JDialog {
     private JButton btnRegister;
     private JPanel loginPanel;
 
+    public User user;
     Encryptor encryptor = new Encryptor();
+
 
     public  LoginForm(JFrame parent) {
         super(parent);
@@ -52,7 +54,7 @@ public class LoginForm extends JDialog {
         setVisible(true);
     }
 
-    public User user;
+
     private User getAuthenticatedUser(String email, String password) {
         User user = null;
 
