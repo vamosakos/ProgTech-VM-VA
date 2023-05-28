@@ -19,7 +19,7 @@ public class Main {
         if (user != null) {
             System.out.println("Successful Authentication of: " + user.full_name);
             System.out.println("            Email: " + user.email);
-            EvenTourFormA evenTourFormA = new EvenTourFormA(null);
+
         }
         else {
             System.out.println("Authentication canceled");

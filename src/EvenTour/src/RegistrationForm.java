@@ -10,7 +10,7 @@ public class RegistrationForm extends JDialog{
     private JPasswordField pfPasswordAgain;
     private JPasswordField pfPassword;
     private JButton btnRegister;
-    private JButton btnCancel;
+    private JButton btnBackToLogin;
     private JPanel registerPanel;
 
     Encryptor encryptor = new Encryptor();
@@ -28,12 +28,14 @@ public class RegistrationForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 registerUser();
+                LoginForm loginForm = new LoginForm(null);
             }
         });
-        btnCancel.addActionListener(new ActionListener() {
+        btnBackToLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                LoginForm loginForm = new LoginForm(null);
             }
         });
 
@@ -66,6 +68,10 @@ public class RegistrationForm extends JDialog{
         user = addUserToDatabase(full_name, email, password, permission);
         if (user != null) {
             dispose();
+            JOptionPane.showMessageDialog(this,
+                    "Registration successful",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
         else {
             JOptionPane.showMessageDialog(this,

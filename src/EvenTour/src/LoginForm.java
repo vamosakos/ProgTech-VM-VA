@@ -8,7 +8,7 @@ public class LoginForm extends JDialog {
     private JTextField tfEmail;
     private JPasswordField pfPassword;
     private JButton btnOK;
-    private JButton btnCancel;
+    private JButton btnRegister;
     private JPanel loginPanel;
 
     Encryptor encryptor = new Encryptor();
@@ -31,6 +31,7 @@ public class LoginForm extends JDialog {
 
                 if (user != null) {
                     dispose();
+                    EvenTourFormA evenTourFormA = new EvenTourFormA(null);
                 }
                 else {
                     JOptionPane.showMessageDialog(LoginForm.this,
@@ -40,10 +41,11 @@ public class LoginForm extends JDialog {
                 }
             }
         });
-        btnCancel.addActionListener(new ActionListener() {
+        btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                RegistrationForm registrationForm = new RegistrationForm(null);
             }
         });
 

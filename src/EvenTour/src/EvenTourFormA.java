@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -23,6 +22,7 @@ public class EvenTourFormA extends JDialog{
     private JButton btnDelete;
     private JButton btnSearch;
     private JTextField tfSearch;
+    private JButton btnLogout;
 
 
     JDateChooser datechooser = new JDateChooser();
@@ -45,8 +45,18 @@ public class EvenTourFormA extends JDialog{
             public void actionPerformed(ActionEvent e) { addTour(); }
         });
 
+
+        btnLogout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                LoginForm loginForm = new LoginForm(null);
+            }
+        });
+
         setVisible(true);
     }
+
 
 
     private void addTour() {
