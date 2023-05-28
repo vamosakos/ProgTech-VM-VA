@@ -10,26 +10,24 @@ import java.util.Date;
 
 
 public class EvenTourFormAdmin extends JDialog{
-    private JPanel evenTourPanelA;
+    private JPanel evenTourPanelAdmin;
     private JTextField tfRoute;
     private JPanel jpDatePicker;
     private JTextField tfDistance;
     private JTextField tfPrice;
+    private JTextField tfId;
     private JButton btnAdd;
-    private JTable evenTourDashboardTable;
     private JButton btnDelete;
     private JButton btnLogout;
-    private JTextField tfId;
-
+    private JTable evenTourDashboardTable;
     public Tour tour;
-    JDateChooser datechooser = new JDateChooser();
-    PreparedStatement pst;
-
+    public JDateChooser datechooser = new JDateChooser();
+    public PreparedStatement pst;
 
     public EvenTourFormAdmin(JFrame parent) {
         super(parent);
         setTitle("evenTour Dashboard (admin)");
-        setContentPane(evenTourPanelA);
+        setContentPane(evenTourPanelAdmin);
         setMinimumSize(new Dimension(550, 570));
         setModal(true);
         setLocationRelativeTo(parent);
@@ -41,7 +39,15 @@ public class EvenTourFormAdmin extends JDialog{
 
         btnAdd.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { addTour(); }
+            public void actionPerformed(ActionEvent e) {
+                addTour();
+            }
+        });
+        btnDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deleteTour();
+            }
         });
         btnLogout.addActionListener(new ActionListener() {
             @Override
@@ -50,14 +56,9 @@ public class EvenTourFormAdmin extends JDialog{
                 LoginForm loginForm = new LoginForm(null);
             }
         });
-        btnDelete.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { deleteTour(); }
-        });
 
         setVisible(true);
     }
-
 
     private void tableLoad() {
         Tour tour = null;
@@ -77,10 +78,12 @@ public class EvenTourFormAdmin extends JDialog{
             e.printStackTrace();
         }
     }
+
+
     private void addTour() {
         try {
-            int d = Integer.parseInt(tfDistance.getText());
-            int p = Integer.parseInt(tfPrice.getText());
+            int distanceNFE = Integer.parseInt(tfDistance.getText());
+            int priceNFE = Integer.parseInt(tfPrice.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
                     "Please enter all fields",
@@ -132,46 +135,11 @@ public class EvenTourFormAdmin extends JDialog{
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-    private void deleteTour() {
-
-        try {
-            int i = Integer.parseInt(tfId.getText());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this,
-                    "Please enter an id number",
-                    "Try again",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-
-        int id = Integer.parseInt(tfId.getText());
-
-        tour = deleteTourFromDatabase(id);
-        if (tour != null) {
-            JOptionPane.showMessageDialog(this,
-                    "Tour successfully deleted",
-                    "Success",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
-        else {
-            JOptionPane.showMessageDialog(this,
-                    "Failed to delete tour",
-                    "Try again",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-
-
-    }
-
-
     private Tour addTourToDatabase(String route, Date date, int distance, int price) {
         Tour tour = null;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
         final String USERNAME = "root";
         final String PASSWORD = "";
-
-
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
@@ -194,7 +162,6 @@ public class EvenTourFormAdmin extends JDialog{
                 tour.price = price;
             }
 
-
             stmt.close();
             conn.close();
             tableLoad();
@@ -205,13 +172,40 @@ public class EvenTourFormAdmin extends JDialog{
 
         return tour;
     }
+
+
+    private void deleteTour() {
+        try {
+            int tourIdNFE = Integer.parseInt(tfId.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter a valid tour id",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int tourId = Integer.parseInt(tfId.getText());
+
+        tour = deleteTourFromDatabase(tourId);
+        if (tour != null) {
+            JOptionPane.showMessageDialog(this,
+                    "Tour successfully deleted",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        else {
+            JOptionPane.showMessageDialog(this,
+                    "Failed to delete tour",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
     private Tour deleteTourFromDatabase(int id) {
         Tour tour = null;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
         final String USERNAME = "root";
         final String PASSWORD = "";
-
-
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
@@ -226,7 +220,6 @@ public class EvenTourFormAdmin extends JDialog{
                 tour = new Tour();
                 tour.id = id;
             }
-
 
             stmt.close();
             conn.close();

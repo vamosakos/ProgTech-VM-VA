@@ -10,16 +10,10 @@ public class LoginForm extends JDialog {
     private JButton btnOK;
     private JButton btnRegister;
     private JPanel loginPanel;
-
-    public int ID;
-
     public User user;
+    public Encryptor encryptor = new Encryptor();
 
-
-    Encryptor encryptor = new Encryptor();
-
-
-    public  LoginForm(JFrame parent) {
+    public LoginForm(JFrame parent) {
         super(parent);
         setTitle("Login");
         setContentPane(loginPanel);
@@ -27,6 +21,7 @@ public class LoginForm extends JDialog {
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,7 +32,9 @@ public class LoginForm extends JDialog {
 
                 if (user != null) {
                     dispose();
+                    // stratégia...
                     EvenTourFormUser evenTourFormUser = new EvenTourFormUser(user);
+                    // EvenTourFormAdmin evenTourFormAdmin = new EvenTourFormAdmin(null);
                 }
                 else {
                     JOptionPane.showMessageDialog(LoginForm.this,
@@ -57,7 +54,6 @@ public class LoginForm extends JDialog {
 
         setVisible(true);
     }
-
 
     private User getAuthenticatedUser(String email, String password) {
         User user = null;
@@ -91,7 +87,6 @@ public class LoginForm extends JDialog {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         return user;
     }

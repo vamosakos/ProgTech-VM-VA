@@ -12,9 +12,8 @@ public class RegistrationForm extends JDialog{
     private JButton btnRegister;
     private JButton btnBackToLogin;
     private JPanel registerPanel;
-
     public User user;
-    Encryptor encryptor = new Encryptor();
+    public Encryptor encryptor = new Encryptor();
 
     public RegistrationForm(JFrame parent) {
         super(parent);
@@ -75,7 +74,7 @@ public class RegistrationForm extends JDialog{
 
         if(!full_name.matches("^[a-zA-Z]+$")) {
             JOptionPane.showMessageDialog(this,
-                    "The name cannot contain a number",
+                    "The name cannot contain number",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
             return;
