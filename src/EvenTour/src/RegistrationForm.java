@@ -28,7 +28,6 @@ public class RegistrationForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 registerUser();
-                LoginForm loginForm = new LoginForm(null);
             }
         });
         btnBackToLogin.addActionListener(new ActionListener() {
@@ -68,6 +67,7 @@ public class RegistrationForm extends JDialog{
         user = addUserToDatabase(full_name, email, password, permission);
         if (user != null) {
             dispose();
+            LoginForm loginForm = new LoginForm(null);
             JOptionPane.showMessageDialog(this,
                     "Registration successful",
                     "Success",
