@@ -93,6 +93,7 @@ public class EvenTourFormA extends JDialog{
         Date date = datechooser.getDate();
         int distance = Integer.parseInt(tfDistance.getText());
         int price = Integer.parseInt(tfPrice.getText());
+
         if (route.isEmpty() || date == null) {
             JOptionPane.showMessageDialog(this,
                     "Please enter all fields",
@@ -100,6 +101,23 @@ public class EvenTourFormA extends JDialog{
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
+
+        if (distance <= 0) {
+            JOptionPane.showMessageDialog(this,
+                    "The distance must be greater than 0",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (price < 500) {
+            JOptionPane.showMessageDialog(this,
+                    "The price must be more than 500 HUF",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         tour = addTourToDatabase(route, date, distance, price);
         if (tour != null) {
             JOptionPane.showMessageDialog(this,

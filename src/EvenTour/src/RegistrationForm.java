@@ -65,14 +65,39 @@ public class RegistrationForm extends JDialog{
             return;
         }
 
+        if (full_name.length() < 2 ) {
+            JOptionPane.showMessageDialog(this,
+                    "The name must be more than 1 character",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if(!full_name.matches("^[a-zA-Z]+$")) {
+            JOptionPane.showMessageDialog(this,
+                    "The name cannot contain a number",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (password.length() < 5) {
+            JOptionPane.showMessageDialog(this,
+                    "The password must be more than 4 character",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         user = addUserToDatabase(full_name, email, password, permission);
         if (user != null) {
-            dispose();
-            LoginForm loginForm = new LoginForm(null);
             JOptionPane.showMessageDialog(this,
                     "Registration successful",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+            LoginForm loginForm = new LoginForm(null);
+
         }
         else {
             JOptionPane.showMessageDialog(this,
