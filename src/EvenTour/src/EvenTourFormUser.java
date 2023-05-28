@@ -1,47 +1,46 @@
-import com.toedter.calendar.JDateChooser;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.PublicKey;
 import java.sql.*;
-import java.util.Date;
+import java.util.jar.JarEntry;
 
 
-public class EvenTourFormA extends JDialog{
+public class EvenTourFormUser extends JFrame{
     private JPanel evenTourPanelA;
     private JTextField tfRoute;
     private JPanel jpDatePicker;
-    private JTextField tfDistance;
-    private JTextField tfPrice;
-    private JButton btnAdd;
+    private JTextField tfDelete;
+    private JTextField tfSignUpId;
+    private JButton btnSignUp;
     private JTable evenTourDashboardTable;
     private JButton btnDelete;
     private JButton btnLogout;
     private JTextField tfId;
 
     public Tour tour;
-    JDateChooser datechooser = new JDateChooser();
+    public User USER;
+    public UserTour userTour;
     PreparedStatement pst;
 
 
-    public EvenTourFormA(JFrame parent) {
-        super(parent);
-        setTitle("evenTour Dashboard (admin)");
+    public EvenTourFormUser(User user) {
+        setTitle("evenTour Dashboard");
         setContentPane(evenTourPanelA);
         setMinimumSize(new Dimension(550, 570));
-        setModal(true);
-        setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        datechooser.setDateFormatString("dd/MM/yyyy");
-        jpDatePicker.add(datechooser);
+        USER = user;
         tableLoad();
 
-        btnAdd.addActionListener(new ActionListener() {
+        btnSignUp.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { addTour(); }
+            public void actionPerformed(ActionEvent e) {
+                signUpTour();
+            }
         });
         btnLogout.addActionListener(new ActionListener() {
             @Override
@@ -52,7 +51,7 @@ public class EvenTourFormA extends JDialog{
         });
         btnDelete.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { deleteTour(); }
+            public void actionPerformed(ActionEvent e) { unsubscribeTour(); }
         });
 
         setVisible(true);
@@ -77,10 +76,9 @@ public class EvenTourFormA extends JDialog{
             e.printStackTrace();
         }
     }
-    private void addTour() {
+    private void signUpTour() {
         try {
-            int d = Integer.parseInt(tfDistance.getText());
-            int p = Integer.parseInt(tfPrice.getText());
+            int s = Integer.parseInt(tfSignUpId.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
                     "Please enter all fields",
@@ -89,37 +87,12 @@ public class EvenTourFormA extends JDialog{
             return;
         }
 
-        String route = tfRoute.getText();
-        Date date = datechooser.getDate();
-        int distance = Integer.parseInt(tfDistance.getText());
-        int price = Integer.parseInt(tfPrice.getText());
+        int signUpId = Integer.parseInt(tfSignUpId.getText());
+        int userId = USER.id;
 
-        if (route.isEmpty() || date == null) {
-            JOptionPane.showMessageDialog(this,
-                    "Please enter all fields",
-                    "Try again",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
 
-        if (distance <= 0) {
-            JOptionPane.showMessageDialog(this,
-                    "The distance must be greater than 0",
-                    "Try again",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (price < 500) {
-            JOptionPane.showMessageDialog(this,
-                    "The price must be more than 500 HUF",
-                    "Try again",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        tour = addTourToDatabase(route, date, distance, price);
-        if (tour != null) {
+        userTour = signUpTourToDatabase(userId, signUpId);
+        if (userTour != null) {
             JOptionPane.showMessageDialog(this,
                     "Tour successfully added",
                     "Success",
@@ -127,12 +100,12 @@ public class EvenTourFormA extends JDialog{
         }
         else {
             JOptionPane.showMessageDialog(this,
-                    "Failed to add new tour",
+                    "Failed to add new tour asd",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-    private void deleteTour() {
+    private void unsubscribeTour() {
 
         try {
             int i = Integer.parseInt(tfId.getText());
@@ -165,45 +138,39 @@ public class EvenTourFormA extends JDialog{
     }
 
 
-    private Tour addTourToDatabase(String route, Date date, int distance, int price) {
-        Tour tour = null;
+    private UserTour signUpTourToDatabase(int userId, int tourId) {
+        UserTour userTour = null;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
         final String USERNAME = "root";
         final String PASSWORD = "";
 
 
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+                Statement stmt = conn.createStatement();
+                String sql = "INSERT INTO user_tour (user_id, tour_id) " +
+                        "VALUES (?, ?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setInt(1, userId);
+                preparedStatement.setInt(2, tourId);
 
-            Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO tours (route, date, distance, price) " +
-                    "VALUES (?, ?, ?, ?)";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, route);
-            preparedStatement.setObject(2, date);
-            preparedStatement.setInt(3, distance);
-            preparedStatement.setInt(4, price);
+                int addedRows2 = preparedStatement.executeUpdate();
+                if (addedRows2 > 0) {
+                    userTour = new UserTour();
+                    userTour.user_id = userId;
+                    userTour.tour_id = tourId;
+                }
 
-            int addedRows = preparedStatement.executeUpdate();
-            if (addedRows > 0) {
-                tour = new Tour();
-                tour.route = route;
-                tour.date = date;
-                tour.distance = distance;
-                tour.price = price;
+                stmt.close();
+                conn.close();
+                tableLoad();
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
-
-            stmt.close();
-            conn.close();
-            tableLoad();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return tour;
+            return userTour;
     }
     private Tour deleteTourFromDatabase(int id) {
         Tour tour = null;

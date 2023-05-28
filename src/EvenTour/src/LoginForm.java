@@ -11,7 +11,11 @@ public class LoginForm extends JDialog {
     private JButton btnRegister;
     private JPanel loginPanel;
 
+    public int ID;
+
     public User user;
+
+
     Encryptor encryptor = new Encryptor();
 
 
@@ -33,7 +37,7 @@ public class LoginForm extends JDialog {
 
                 if (user != null) {
                     dispose();
-                    EvenTourFormA evenTourFormA = new EvenTourFormA(null);
+                    EvenTourFormUser evenTourFormUser = new EvenTourFormUser(user);
                 }
                 else {
                     JOptionPane.showMessageDialog(LoginForm.this,
@@ -75,6 +79,7 @@ public class LoginForm extends JDialog {
 
             if (resultSet.next()) {
                 user = new User();
+                user.id = resultSet.getInt("id");
                 user.full_name = resultSet.getString("full_name");
                 user.email = resultSet.getString("email");
                 user.password = resultSet.getString("password");

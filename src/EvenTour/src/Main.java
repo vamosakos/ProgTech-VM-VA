@@ -19,7 +19,6 @@ public class Main {
         if (user != null) {
             System.out.println("Successful Authentication of: " + user.full_name);
             System.out.println("            Email: " + user.email);
-
         }
         else {
             System.out.println("Authentication canceled");
