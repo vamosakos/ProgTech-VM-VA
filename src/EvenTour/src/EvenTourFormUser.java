@@ -4,20 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.PublicKey;
 import java.sql.*;
-import java.util.jar.JarEntry;
 
 
 public class EvenTourFormUser extends JFrame{
     private JPanel evenTourPanelA;
     private JTextField tfRoute;
     private JPanel jpDatePicker;
-    private JTextField tfDelete;
+    private JTextField tfUnsubscribe;
     private JTextField tfSignUpId;
     private JButton btnSignUp;
     private JTable evenTourDashboardTable;
-    private JButton btnDelete;
+    private JButton btnUnsubscribe;
     private JButton btnLogout;
     private JTextField tfId;
 
@@ -49,9 +47,11 @@ public class EvenTourFormUser extends JFrame{
                 LoginForm loginForm = new LoginForm(null);
             }
         });
-        btnDelete.addActionListener(new ActionListener() {
+        btnUnsubscribe.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { unsubscribeTour(); }
+            public void actionPerformed(ActionEvent e) {
+                unsubscribeTour();
+            }
         });
 
         setVisible(true);
@@ -108,7 +108,7 @@ public class EvenTourFormUser extends JFrame{
     private void unsubscribeTour() {
 
         try {
-            int i = Integer.parseInt(tfId.getText());
+            int i = Integer.parseInt(tfUnsubscribe.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
                     "Please enter an id number",
@@ -117,19 +117,19 @@ public class EvenTourFormUser extends JFrame{
             return;
         }
 
+        int tourId = Integer.parseInt(tfUnsubscribe.getText());
+        int userId = USER.id;
 
-        int id = Integer.parseInt(tfId.getText());
-
-        tour = deleteTourFromDatabase(id);
-        if (tour != null) {
+        userTour = deleteTourFromDatabase(userId, tourId);
+        if (userTour != null) {
             JOptionPane.showMessageDialog(this,
-                    "Tour successfully deleted",
+                    "Successfully unsubscribed from tour",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
         }
         else {
             JOptionPane.showMessageDialog(this,
-                    "Failed to delete tour",
+                    "Failed to unsubscribe from tour",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
         }
@@ -172,28 +172,27 @@ public class EvenTourFormUser extends JFrame{
 
             return userTour;
     }
-    private Tour deleteTourFromDatabase(int id) {
-        Tour tour = null;
+    private UserTour deleteTourFromDatabase(int userId, int tourId) {
+        UserTour userTour = null;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
         final String USERNAME = "root";
         final String PASSWORD = "";
-
-
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
             Statement stmt = conn.createStatement();
-            String sql = "DELETE FROM tours where id = ? ";
+            String sql = "DELETE FROM user_tour WHERE user_id=? AND tour_id=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, tourId);
 
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows > 0) {
-                tour = new Tour();
-                tour.id = id;
+                userTour = new UserTour();
+                userTour.user_id = userId;
+                userTour.tour_id = tourId;
             }
-
 
             stmt.close();
             conn.close();
@@ -203,6 +202,6 @@ public class EvenTourFormUser extends JFrame{
             e.printStackTrace();
         }
 
-        return tour;
+        return userTour;
     }
 }
