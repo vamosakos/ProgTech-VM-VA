@@ -1,7 +1,6 @@
 package Forms;
 
 import com.toedter.calendar.JDateChooser;
-import net.proteanit.sql.DbUtils;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,6 +9,7 @@ import java.sql.*;
 import java.util.Date;
 import Models.*;
 import Strategy.*;
+import HelperMethods.*;
 
 
 public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStrategy {
@@ -27,6 +27,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
     public JDateChooser datechooser = new JDateChooser();
     public PreparedStatement pst;
     public User loggedInUser;
+    public TableLoad tableLoad = new TableLoad();
 
     @Override
     public void adminDashboardLoad(User user) {
@@ -39,7 +40,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
         datechooser.setDateFormatString("dd/MM/yyyy");
         jpDatePicker.add(datechooser);
         loggedInUser = user;
-        tableLoad();
+        tableLoad.tableLoad(evenTourDashboardTable);
 
         btnAdd.addActionListener(new ActionListener() {
             @Override
@@ -67,26 +68,6 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
     public AdminFormStrategy(User user) {
         adminDashboardLoad(user);
     }
-
-    private void tableLoad() {
-        Tour tour = null;
-        final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
-        final String USERNAME = "root";
-        final String PASSWORD = "";
-
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-
-            Statement stmt = conn.createStatement();
-
-            pst = conn.prepareStatement("SELECT * FROM tours");
-            ResultSet rs = pst.executeQuery();
-            evenTourDashboardTable.setModel(DbUtils.resultSetToTableModel(rs));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     private void addTour() {
         try {
@@ -172,7 +153,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
 
             stmt.close();
             conn.close();
-            tableLoad();
+            tableLoad.tableLoad(evenTourDashboardTable);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -231,7 +212,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
 
             stmt.close();
             conn.close();
-            tableLoad();
+            tableLoad.tableLoad(evenTourDashboardTable);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,6 +1,5 @@
 package Forms;
 
-import net.proteanit.sql.DbUtils;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import Strategy.*;
 import Models.*;
+import HelperMethods.*;
 
 
 public class UserFormStrategy extends JFrame implements UserDashboardLoadStrategy {
@@ -20,7 +20,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
     private JTable evenTourDashboardTable;
     public User loggedInUser;
     public UserTour userTour;
-    public PreparedStatement pst;
+    public TableLoad tableLoad = new TableLoad();
 
     @Override
     public void userDashboardLoad(User user) {
@@ -30,7 +30,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         loggedInUser = user;
-        tableLoad();
+        tableLoad.tableLoad(evenTourDashboardTable);
 
         btnSignUp.addActionListener(new ActionListener() {
             @Override
@@ -56,26 +56,6 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
     public UserFormStrategy(User user) {
         userDashboardLoad(user);
     }
-
-    private void tableLoad() {
-        Tour tour = null;
-        final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
-        final String USERNAME = "root";
-        final String PASSWORD = "";
-
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-
-            Statement stmt = conn.createStatement();
-
-            pst = conn.prepareStatement("SELECT * FROM tours");
-            ResultSet rs = pst.executeQuery();
-            evenTourDashboardTable.setModel(DbUtils.resultSetToTableModel(rs));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     private void signUpTour() {
         try {
