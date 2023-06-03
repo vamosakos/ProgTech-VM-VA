@@ -8,6 +8,8 @@ public class MouseListener implements java.awt.event.MouseListener {
     public JTable evenTourDashboardTable;
     public JTextField tfId;
 
+    //region override methods
+
     @Override
     public void mouseClicked(MouseEvent e) {
         int row = evenTourDashboardTable.getSelectedRow();
@@ -33,4 +35,6 @@ public class MouseListener implements java.awt.event.MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+
+    //endregion
 }

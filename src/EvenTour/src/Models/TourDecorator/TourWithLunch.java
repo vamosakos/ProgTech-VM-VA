@@ -7,7 +7,6 @@ public class TourWithLunch extends TourBase {
         super(route, date, distance, price + 500);
     }
 
-
     @Override
     public String getRoute() {
         return this.route + " (WL)";
@@ -27,4 +26,5 @@ public class TourWithLunch extends TourBase {
     public int getPrice() {
         return this.price;
     }
+
 }

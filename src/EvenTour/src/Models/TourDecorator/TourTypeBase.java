@@ -3,13 +3,12 @@ package Models.TourDecorator;
 import java.util.Date;
 
 public class TourTypeBase extends TourBase {
+    private TourBase tourBase;
 
     public TourTypeBase(TourBase tourBase) {
         super(tourBase.route, tourBase.date, tourBase.distance, tourBase.price);
         this.tourBase = tourBase;
     }
-
-    private TourBase tourBase;
 
     @Override
     public String getRoute() {
@@ -30,4 +29,5 @@ public class TourTypeBase extends TourBase {
     public int getPrice() {
         return tourBase.getPrice();
     }
+
 }

@@ -10,6 +10,8 @@ import Strategy.*;
 import Models.*;
 
 public class LoginForm extends JDialog {
+
+    //region fields
     private JTextField tfEmail;
     private JPasswordField pfPassword;
     private JButton btnOK;
@@ -18,6 +20,9 @@ public class LoginForm extends JDialog {
     public User user;
     public Encryptor encryptor = new Encryptor();
 
+    //endregion
+
+    //region form load
     public LoginForm(JFrame parent) {
         super(parent);
         setTitle("Login");
@@ -62,7 +67,9 @@ public class LoginForm extends JDialog {
 
         setVisible(true);
     }
+    //endregion
 
+    //region user verification
     private User getAuthenticatedUser(String email, String password) {
         User user = null;
 
@@ -99,4 +106,6 @@ public class LoginForm extends JDialog {
 
         return user;
     }
+
+    //endregion
 }

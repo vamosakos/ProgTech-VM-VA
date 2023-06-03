@@ -12,6 +12,7 @@ public class UserTour {
         this.tourId = tourId;
     }
 
+    //region properties
     public int getId() {
         return id;
     }
@@ -35,4 +36,6 @@ public class UserTour {
     public void setTourId(int tourId) {
         this.tourId = tourId;
     }
+
+    //endregion
 }

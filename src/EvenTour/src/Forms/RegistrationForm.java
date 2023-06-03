@@ -9,6 +9,8 @@ import HelperMethods.Encryptor;
 import Models.*;
 
 public class RegistrationForm extends JDialog{
+
+    //region fields
     private JTextField tfFullName;
     private JTextField tfEmail;
     private JPasswordField pfPasswordAgain;
@@ -19,6 +21,9 @@ public class RegistrationForm extends JDialog{
     public User user;
     public Encryptor encryptor = new Encryptor();
 
+    //endregion
+
+    //region register form load
     public RegistrationForm(JFrame parent) {
         super(parent);
         setTitle("Create a new account");
@@ -45,7 +50,9 @@ public class RegistrationForm extends JDialog{
         setVisible(true);
     }
 
+    //endregion
 
+    //region register and add user to database
     private void registerUser() {
         String full_name = tfFullName.getText();
         String email = tfEmail.getText();
@@ -110,7 +117,6 @@ public class RegistrationForm extends JDialog{
         }
     }
 
-
     private User addUserToDatabase(String full_name, String email, String password, int permission) {
         User user = null;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
@@ -147,4 +153,6 @@ public class RegistrationForm extends JDialog{
 
         return user;
     }
+
+    //endregion
 }

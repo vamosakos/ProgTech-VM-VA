@@ -13,6 +13,8 @@ import HelperMethods.*;
 
 
 public class UserFormStrategy extends JFrame implements UserDashboardLoadStrategy {
+
+    //region fields
     private JPanel evenTourPanelUser;
     private JTextField tfId;
     private JButton btnSignUp;
@@ -23,6 +25,9 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
     public UserTour userTour;
     public TableLoad tableLoad = new TableLoad();
 
+    //endregion
+
+    //region form load
     @Override
     public void userDashboardLoad(User user) {
         setTitle("evenTour Dashboard");
@@ -100,6 +105,9 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
         userDashboardLoad(user);
     }
 
+    //endregion
+
+    //region add / delete methods
     private void signUpTour() {
         try {
             int signUpId = Integer.parseInt(tfId.getText());
@@ -248,4 +256,6 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
 
         return userTour;
     }
+
+    //endregion
 }

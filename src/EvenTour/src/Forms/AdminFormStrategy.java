@@ -17,6 +17,8 @@ import Strategy.*;
 import HelperMethods.*;
 
 public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStrategy {
+
+    //region fields
     private JPanel evenTourPanelAdmin;
     private JTextField tfRoute;
     private JPanel jpDatePicker;
@@ -31,11 +33,13 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
     private JCheckBox cbLunch;
     public Tour tour;
     public JDateChooser datechooser = new JDateChooser();
-    public PreparedStatement pst;
     public User loggedInUser;
     public TableLoad tableLoad = new TableLoad();
     public TourBase tourBase;
 
+    //endregion
+
+    //region form load
     @Override
     public void adminDashboardLoad(User user) {
         setTitle("evenTour Dashboard (admin)");
@@ -128,6 +132,9 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
         adminDashboardLoad(user);
     }
 
+    //endregion
+
+    //region add / delete methods
     private void addTour() {
         try {
             int distanceNFE = Integer.parseInt(tfDistance.getText());
@@ -312,4 +319,6 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
 
         return tour;
     }
+
+    //endregion
 }

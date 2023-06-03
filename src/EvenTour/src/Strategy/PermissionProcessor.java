@@ -22,6 +22,7 @@ public class PermissionProcessor extends AbstractPermissionProcessor {
             default: break;
         }
     }
+
     @Override
     public void userDashboardLoad(User user) {
         userDashboardLoadStrategy.userDashboardLoad(user);

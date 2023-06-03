@@ -16,6 +16,7 @@ public class User {
         this.permission = permission;
     }
 
+    //region properties
     public int getId() {
         return id;
     }
@@ -55,4 +56,6 @@ public class User {
     public void setPermission(int permission) {
         this.permission = permission;
     }
+
+    //endregion
 }

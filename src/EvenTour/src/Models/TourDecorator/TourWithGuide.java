@@ -6,7 +6,7 @@ public class TourWithGuide extends TourTypeBase{
         super(tourBase);
     }
 
-
+    
     @Override
     public String getRoute() {
         return super.getRoute() + " (WG)";
@@ -16,4 +16,5 @@ public class TourWithGuide extends TourTypeBase{
     public int getPrice() {
         return super.getPrice() + 3000;
     }
+
 }

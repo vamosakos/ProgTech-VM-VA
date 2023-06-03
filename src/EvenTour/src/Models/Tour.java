@@ -24,6 +24,8 @@ public class Tour {
         this.price = price;
     }
 
+    //region properties
+
     public int getId() {
         return id;
     }
@@ -64,4 +66,6 @@ public class Tour {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    //endregion
 }
