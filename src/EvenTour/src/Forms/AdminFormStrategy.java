@@ -1,5 +1,8 @@
 package Forms;
 
+import Models.TourDecorator.TourBase;
+import Models.TourDecorator.TourWithGuide;
+import Models.TourDecorator.TourWithLunch;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
 import java.awt.*;
@@ -24,17 +27,19 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
     private JButton btnLogout;
     private JTable evenTourDashboardTable;
     private JCheckBox cbGuide;
+    private JCheckBox cbLunch;
     public Tour tour;
     public JDateChooser datechooser = new JDateChooser();
     public PreparedStatement pst;
     public User loggedInUser;
     public TableLoad tableLoad = new TableLoad();
+    TourBase tourBase;
 
     @Override
     public void adminDashboardLoad(User user) {
         setTitle("evenTour Dashboard (admin)");
         setContentPane(evenTourPanelAdmin);
-        setMinimumSize(new Dimension(550, 570));
+        setMinimumSize(new Dimension(850, 570));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -63,6 +68,20 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
             }
         });
 
+        cbGuide.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cbLunch.setSelected(true);
+            }
+        });
+
+        cbLunch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cbGuide.setSelected(false);
+            }
+        });
+
         setVisible(true);
     }
 
@@ -87,10 +106,39 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
         int distance = Integer.parseInt(tfDistance.getText());
         int price = Integer.parseInt(tfPrice.getText());
 
+
         if (cbGuide.isSelected())
         {
-            price+= 500;
+            tourBase = new TourWithGuide(new TourWithLunch(route,date,distance, price));
         }
+        else if (cbLunch.isSelected()) {
+            tourBase = new TourWithLunch(route,date,distance, price);
+        }
+        else{
+            tourBase = new TourBase(route, date, distance, price) {
+                @Override
+                public String getRoute() {
+                    return route;
+                }
+
+                @Override
+                public Date getDate() {
+                    return date;
+                }
+
+                @Override
+                public int getDistance() {
+                    return distance;
+                }
+
+                @Override
+                public int getPrice() {
+                    return price;
+                }
+            };
+        }
+
+
         if (route.isEmpty() || date == null) {
             JOptionPane.showMessageDialog(this,
                     "Please enter all fields",
@@ -115,7 +163,8 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
             return;
         }
 
-        tour = addTourToDatabase(route, date, distance, price);
+        tour = addTourToDatabase(tourBase);
+
         if (tour != null) {
             JOptionPane.showMessageDialog(this,
                     "Tour successfully added",
@@ -129,7 +178,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-    private Tour addTourToDatabase(String route, Date date, int distance, int price) {
+    private Tour addTourToDatabase(TourBase tourBase) {
         Tour tour = null;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
         final String USERNAME = "root";
@@ -142,18 +191,18 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
             String sql = "INSERT INTO tours (route, date, distance, price) " +
                     "VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, route);
-            preparedStatement.setObject(2, date);
-            preparedStatement.setInt(3, distance);
-            preparedStatement.setInt(4, price);
+            preparedStatement.setString(1, tourBase.getRoute());
+            preparedStatement.setObject(2, tourBase.getDate());
+            preparedStatement.setInt(3, tourBase.getDistance());
+            preparedStatement.setInt(4, tourBase.getPrice());
 
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows > 0) {
                 tour = new Tour();
-                tour.setRoute(route);
-                tour.setDate(date);
-                tour.setDistance(distance);
-                tour.setPrice(price);
+                tour.setRoute(tourBase.getRoute());
+                tour.setDate(tourBase.getDate());
+                tour.setDistance(tourBase.getDistance());
+                tour.setPrice(tourBase.getPrice());
             }
 
             stmt.close();

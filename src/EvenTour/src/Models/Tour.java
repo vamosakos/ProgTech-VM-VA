@@ -3,6 +3,7 @@ package Models;
 import java.util.*;
 
 public class Tour {
+    // TourBase
     private int id;
     private String route;
     private Date date;
