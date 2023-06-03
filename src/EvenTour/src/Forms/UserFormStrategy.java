@@ -104,8 +104,8 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows > 0) {
                 userTour = new UserTour();
-                userTour.userId = evenTourUserId;
-                userTour.tourId = evenTourTourId;
+                userTour.setUserId(evenTourUserId);
+                userTour.setTourId(evenTourTourId);
             }
 
             stmt.close();
@@ -165,8 +165,8 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows > 0) {
                 userTour = new UserTour();
-                userTour.userId = userId;
-                userTour.tourId = tourId;
+                userTour.setUserId(userId);
+                userTour.setTourId(tourId);
             }
 
             stmt.close();
