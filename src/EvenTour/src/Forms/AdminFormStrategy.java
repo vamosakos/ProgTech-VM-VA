@@ -145,10 +145,10 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows > 0) {
                 tour = new Tour();
-                tour.route = route;
-                tour.date = date;
-                tour.distance = distance;
-                tour.price = price;
+                tour.setRoute(route);
+                tour.setDate(date);
+                tour.setDistance(distance);
+                tour.setPrice(price);
             }
 
             stmt.close();
@@ -207,7 +207,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows > 0) {
                 tour = new Tour();
-                tour.id = id;
+                tour.setId(id);
             }
 
             stmt.close();
