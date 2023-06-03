@@ -132,10 +132,10 @@ public class RegistrationForm extends JDialog{
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows > 0) {
                 user = new User();
-                user.full_name = full_name;
-                user.email = email;
-                user.password = password;
-                user.permission = permission;
+                user.setFull_name(full_name);
+                user.setEmail(email);
+                user.setPassword(password);
+                user.setPermission(permission);
             }
 
             stmt.close();

@@ -69,7 +69,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
         }
 
         int tourId = Integer.parseInt(tfSignUpId.getText());
-        int userId = loggedInUser.id;
+        int userId = loggedInUser.getId();
 
         userTour = signUpTourToDatabase(userId, tourId);
         if (userTour != null) {
@@ -131,7 +131,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
         }
 
         int tourId = Integer.parseInt(tfUnsubscribeId.getText());
-        int userId = loggedInUser.id;
+        int userId = loggedInUser.getId();
 
         userTour = deleteTourFromDatabase(userId, tourId);
         if (userTour != null) {

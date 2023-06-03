@@ -37,7 +37,7 @@ public class LoginForm extends JDialog {
 
                 if (user != null) {
                     dispose();
-                    if (user.permission == 1) {
+                    if (user.getPermission() == 1) {
                         PermissionProcessor permissionProcessor = new PermissionProcessor(PermissionType.ADMIN, user);
                     }
                     else {
@@ -83,11 +83,11 @@ public class LoginForm extends JDialog {
 
             if (resultSet.next()) {
                 user = new User();
-                user.id = resultSet.getInt("id");
-                user.full_name = resultSet.getString("full_name");
-                user.email = resultSet.getString("email");
-                user.password = resultSet.getString("password");
-                user.permission = resultSet.getInt("permission");
+                user.setId(resultSet.getInt("id"));
+                user.setFull_name(resultSet.getString("full_name"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+                user.setPermission(resultSet.getInt("permission"));
             }
 
             stmt.close();
