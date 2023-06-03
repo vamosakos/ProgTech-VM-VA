@@ -3,7 +3,6 @@ package Forms;
 import Models.TourDecorator.TourBase;
 import Models.TourDecorator.TourWithGuide;
 import Models.TourDecorator.TourWithLunch;
-import com.mysql.cj.xdevapi.ModifyStatement;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
@@ -16,7 +15,6 @@ import java.util.Date;
 import Models.*;
 import Strategy.*;
 import HelperMethods.*;
-
 
 public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStrategy {
     private JPanel evenTourPanelAdmin;
@@ -136,7 +134,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
             int priceNFE = Integer.parseInt(tfPrice.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
-                    "Please enter all fields",
+                    "Invalid format or missing field(s)",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
             return;
@@ -256,7 +254,6 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
 
         return tour;
     }
-
 
     private void deleteTour() {
         try {

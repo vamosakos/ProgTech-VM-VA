@@ -135,24 +135,51 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
         final String PASSWORD = "";
 
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Connection connCheck = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmtCheck = connCheck.createStatement();
+            String sqlCheck = "SELECT * FROM user_tour WHERE user_id=? AND tour_id=? ";
+            PreparedStatement preparedStatementForCheck = connCheck.prepareStatement(sqlCheck);
+            preparedStatementForCheck.setInt(1, evenTourUserId);
+            preparedStatementForCheck.setInt(2, evenTourTourId);
 
-            Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO user_tour (user_id, tour_id) " +
-                    "VALUES (?, ?)";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, evenTourUserId);
-            preparedStatement.setInt(2, evenTourTourId);
+            ResultSet resultSetForCheck = preparedStatementForCheck.executeQuery();
 
-            int addedRows = preparedStatement.executeUpdate();
-            if (addedRows > 0) {
-                userTour = new UserTour();
-                userTour.setUserId(evenTourUserId);
-                userTour.setTourId(evenTourTourId);
+            if (resultSetForCheck.next()) {
+                if (!resultSetForCheck.wasNull()) {
+                    JOptionPane.showMessageDialog(this,
+                            "You already signed up for this tour",
+                            "Try again",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            else {
+                try {
+                    Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+
+                    Statement stmt = conn.createStatement();
+                    String sql = "INSERT INTO user_tour (user_id, tour_id) " +
+                            "VALUES (?, ?)";
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    preparedStatement.setInt(1, evenTourUserId);
+                    preparedStatement.setInt(2, evenTourTourId);
+
+                    int addedRows = preparedStatement.executeUpdate();
+                    if (addedRows > 0) {
+                        userTour = new UserTour();
+                        userTour.setUserId(evenTourUserId);
+                        userTour.setTourId(evenTourTourId);
+                    }
+
+                    stmt.close();
+                    conn.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
-            stmt.close();
-            conn.close();
+            stmtCheck.close();
+            connCheck.close();
 
         } catch (Exception e) {
             e.printStackTrace();

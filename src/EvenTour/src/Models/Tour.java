@@ -1,5 +1,8 @@
 package Models;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Tour {
@@ -37,13 +40,14 @@ public class Tour {
         this.route = route;
     }
 
-    public Date getDate() {
+    public Date getDate() throws ParseException {
+        Date dateWithTime = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        date = sdf.parse(sdf.format(dateWithTime));
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    public void setDate(Date date) { this.date = date; }
 
     public int getDistance() {
         return distance;
