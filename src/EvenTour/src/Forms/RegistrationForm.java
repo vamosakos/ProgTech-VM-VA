@@ -124,28 +124,54 @@ public class RegistrationForm extends JDialog{
         final String PASSWORD = "";
 
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Connection connCheck = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmtCheck = connCheck.createStatement();
+            String sqlCheck = "SELECT * FROM users WHERE email=?";
+            PreparedStatement preparedStatementForCheck = connCheck.prepareStatement(sqlCheck);
+            preparedStatementForCheck.setString(1, email);
 
-            Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO users (full_name, email, password, permission) " +
-                    "VALUES (?, ?, ?, ?)";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, full_name);
-            preparedStatement.setString(2, email);
-            preparedStatement.setString(3, encryptor.encryptPassword(password));
-            preparedStatement.setInt(4, permission);
+            ResultSet resultSetForCheck = preparedStatementForCheck.executeQuery();
 
-            int addedRows = preparedStatement.executeUpdate();
-            if (addedRows > 0) {
-                user = new User();
-                user.setFull_name(full_name);
-                user.setEmail(email);
-                user.setPassword(password);
-                user.setPermission(permission);
+            if (resultSetForCheck.next()) {
+                if (!resultSetForCheck.wasNull()) {
+                    JOptionPane.showMessageDialog(this,
+                            "This user is already exist",
+                            "Try again",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            else {
+                try {
+                    Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+
+                    Statement stmt = conn.createStatement();
+                    String sql = "INSERT INTO users (full_name, email, password, permission) " +
+                            "VALUES (?, ?, ?, ?)";
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    preparedStatement.setString(1, full_name);
+                    preparedStatement.setString(2, email);
+                    preparedStatement.setString(3, encryptor.encryptPassword(password));
+                    preparedStatement.setInt(4, permission);
+
+                    int addedRows = preparedStatement.executeUpdate();
+                    if (addedRows > 0) {
+                        user = new User();
+                        user.setFull_name(full_name);
+                        user.setEmail(email);
+                        user.setPassword(password);
+                        user.setPermission(permission);
+                    }
+
+                    stmt.close();
+                    conn.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
-            stmt.close();
-            conn.close();
+            stmtCheck.close();
+            connCheck.close();
 
         } catch (Exception e) {
             e.printStackTrace();
