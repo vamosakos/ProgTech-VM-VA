@@ -23,6 +23,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
     private JButton btnDelete;
     private JButton btnLogout;
     private JTable evenTourDashboardTable;
+    private JCheckBox cbGuide;
     public Tour tour;
     public JDateChooser datechooser = new JDateChooser();
     public PreparedStatement pst;
@@ -86,6 +87,10 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
         int distance = Integer.parseInt(tfDistance.getText());
         int price = Integer.parseInt(tfPrice.getText());
 
+        if (cbGuide.isSelected())
+        {
+            price+= 500;
+        }
         if (route.isEmpty() || date == null) {
             JOptionPane.showMessageDialog(this,
                     "Please enter all fields",
