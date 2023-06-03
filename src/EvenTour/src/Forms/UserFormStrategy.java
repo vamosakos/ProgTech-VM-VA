@@ -1,9 +1,11 @@
 package Forms;
 
 import javax.swing.*;
+import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.sql.*;
 import Strategy.*;
 import Models.*;
@@ -12,8 +14,7 @@ import HelperMethods.*;
 
 public class UserFormStrategy extends JFrame implements UserDashboardLoadStrategy {
     private JPanel evenTourPanelUser;
-    private JTextField tfSignUpId;
-    private JTextField tfUnsubscribeId;
+    private JTextField tfId;
     private JButton btnSignUp;
     private JButton btnUnsubscribe;
     private JButton btnLogout;
@@ -51,7 +52,49 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
                 LoginForm loginForm = new LoginForm(null);
             }
         });
+
+        evenTourDashboardTable.addMouseListener(new MouseInputListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = evenTourDashboardTable.getSelectedRow();
+                tfId.setText(evenTourDashboardTable.getValueAt(row, 0).toString());
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
+            }
+        });
+
+
         setVisible(true);
+
+
     }
     public UserFormStrategy(User user) {
         userDashboardLoad(user);
@@ -59,7 +102,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
 
     private void signUpTour() {
         try {
-            int signUpId = Integer.parseInt(tfSignUpId.getText());
+            int signUpId = Integer.parseInt(tfId.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
                     "Please enter a valid tour id",
@@ -68,7 +111,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
             return;
         }
 
-        int tourId = Integer.parseInt(tfSignUpId.getText());
+        int tourId = Integer.parseInt(tfId.getText());
         int userId = loggedInUser.getId();
 
         userTour = signUpTourToDatabase(userId, tourId);
@@ -121,7 +164,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
 
     private void unsubscribeTour() {
         try {
-            int unsubscribeId = Integer.parseInt(tfUnsubscribeId.getText());
+            int unsubscribeId = Integer.parseInt(tfId.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
                     "Please enter a valid tour id",
@@ -130,7 +173,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
             return;
         }
 
-        int tourId = Integer.parseInt(tfUnsubscribeId.getText());
+        int tourId = Integer.parseInt(tfId.getText());
         int userId = loggedInUser.getId();
 
         userTour = deleteTourFromDatabase(userId, tourId);

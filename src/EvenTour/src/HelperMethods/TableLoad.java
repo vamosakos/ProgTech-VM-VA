@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.sql.*;
 public class TableLoad {
     public PreparedStatement pst;
-    public JTable evenTourDashboardTable;
     public void tableLoad(JTable dashboard) {
         Tour tour = null;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";

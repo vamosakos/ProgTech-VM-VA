@@ -3,11 +3,14 @@ package Forms;
 import Models.TourDecorator.TourBase;
 import Models.TourDecorator.TourWithGuide;
 import Models.TourDecorator.TourWithLunch;
+import com.mysql.cj.xdevapi.ModifyStatement;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
+import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.sql.*;
 import java.util.Date;
 import Models.*;
@@ -33,7 +36,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
     public PreparedStatement pst;
     public User loggedInUser;
     public TableLoad tableLoad = new TableLoad();
-    TourBase tourBase;
+    public TourBase tourBase;
 
     @Override
     public void adminDashboardLoad(User user) {
@@ -79,6 +82,44 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
             @Override
             public void actionPerformed(ActionEvent e) {
                 cbGuide.setSelected(false);
+            }
+        });
+
+        evenTourDashboardTable.addMouseListener(new MouseInputListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = evenTourDashboardTable.getSelectedRow();
+                tfId.setText(evenTourDashboardTable.getValueAt(row, 0).toString());
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
             }
         });
 
@@ -274,5 +315,4 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
 
         return tour;
     }
-
 }
