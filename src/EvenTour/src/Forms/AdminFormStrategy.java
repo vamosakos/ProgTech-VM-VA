@@ -31,11 +31,11 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
     private JTable evenTourDashboardTable;
     private JCheckBox cbGuide;
     private JCheckBox cbLunch;
-    public Tour tour;
-    public JDateChooser datechooser = new JDateChooser();
-    public User loggedInUser;
-    public TableLoad tableLoad = new TableLoad();
-    public TourBase tourBase;
+    private Tour tour;
+    private JDateChooser datechooser = new JDateChooser();
+    private User loggedInUser;
+    private TableLoad tableLoad = new TableLoad();
+    private TourBase tourBase;
 
     //endregion
 

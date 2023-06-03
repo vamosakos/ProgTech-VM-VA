@@ -17,8 +17,8 @@ public class LoginForm extends JDialog {
     private JButton btnOK;
     private JButton btnRegister;
     private JPanel loginPanel;
-    public User user;
-    public Encryptor encryptor = new Encryptor();
+    private User user;
+    private Encryptor encryptor = new Encryptor();
 
     //endregion
 

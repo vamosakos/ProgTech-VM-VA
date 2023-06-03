@@ -18,8 +18,8 @@ public class RegistrationForm extends JDialog{
     private JButton btnRegister;
     private JButton btnBackToLogin;
     private JPanel registerPanel;
-    public User user;
-    public Encryptor encryptor = new Encryptor();
+    private User user;
+    private Encryptor encryptor = new Encryptor();
 
     //endregion
 

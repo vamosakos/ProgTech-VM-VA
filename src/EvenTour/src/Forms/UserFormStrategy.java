@@ -21,9 +21,9 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
     private JButton btnUnsubscribe;
     private JButton btnLogout;
     private JTable evenTourDashboardTable;
-    public User loggedInUser;
-    public UserTour userTour;
-    public TableLoad tableLoad = new TableLoad();
+    private User loggedInUser;
+    private UserTour userTour;
+    private TableLoad tableLoad = new TableLoad();
 
     //endregion
 
