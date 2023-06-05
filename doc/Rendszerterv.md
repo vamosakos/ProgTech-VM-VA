@@ -25,10 +25,10 @@ Ehhez mindössze elegendő egy egyszerű regisztráció, illetve a túrára val�
 
 ## 4. Követelmények
 ### Funkcionális követelmények:
-Felhasználó adatainak tárolása
-Bejelentkezés gomb: email cím és jelszó együttes megadásával beléphetünk a saját fiókunkba.
-Regisztrációs gomb: az itt megadott adatainkkal kitöltve tudunk fiókot létrehozni.
-Túraesemény feltöltése gomb: Túraesemény feltöltésére szolgál.
+- Felhasználó adatainak tárolása
+- Bejelentkezés gomb: email cím és jelszó együttes megadásával beléphetünk a saját fiókunkba.
+- Regisztrációs gomb: az itt megadott adatainkkal kitöltve tudunk fiókot létrehozni.
+- Túraesemény feltöltése gomb: Túraesemény feltöltésére szolgál.
 
 ### Nem funkcionális követelmények:
 A felhasználók nem jutnak hozzá más felhasználók személyes adataihoz a nevükön és az azonosítókon kívül.
@@ -82,7 +82,6 @@ Diagrams.net - az ábárák megvalósításához
 
 - **TÚRAESEMÉNYEK**
     - Túraeseményre jelentkezés
-    - Túraesemény szerkesztése (adminisztrátori)
     - Túraesemény feltöltése (adminisztrátori)
     - Kijelentkezés
 
@@ -94,7 +93,6 @@ Diagrams.net - az ábárák megvalósításához
 | Jogosultság | T2 | Regisztráció | 1.0 | A felhasználó az email címével és jelszavának megadásával regisztrálja magát. A jelszó tárolása kódolva történik az adatbázisban. Ha valamelyik adat ezek közül hiányzik vagy nem felel meg a követelményeknek, akkor a rendszer értesíti erről a felhasználót. |
 | Jogosultság | T3 | Kijelentkezés | 1.0 | A bejelentkezett felhasználók a kijelentkezés gombra kattintva kitudnak jelentkezni, amely a bejelentkező felületre irányíja őket. |
 | Feltöltés | T4 | Túraesemény feltöltése | 1.0 | A túrát szervezőknek lehetőségük van túraesemények feltöltésére. |
-| Szerkesztés | T5 | Túraesemény szerkesztése | 1.0 | A hozzáadott esemény utólagos szerkesztésének lehetősége. |
 
 
 ## 6. Fizikai környezet
