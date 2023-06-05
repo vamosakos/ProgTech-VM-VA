@@ -4,6 +4,7 @@
 A rendszer célja, hogy a túrázni vágyó felhasználók könnyedén tudjanak találni számukra megfelelő túra eseményeket. Az alkalmazás lehetővé teszi a túrákra való feljelentkezést, amelyekről pontos, naprakész és gyors tájékoztatást kapnak.
 Ehhez mindössze elegendő egy egyszerű regisztráció, illetve a túrára való jelentkezés és a felhasználó máris megszabadul a hosszas e-mailezésektől, körülményes egyeztetésektől. Az alkalmazás segítésével elhagyhatóvá vállnak az unalmas űrlapok megkönnyítve ezzel a jelentkezők és a túraszervezők munkáját is. Továbbá az alkalmazás célja, hogy könnyen kezelhető és átlátható, letisztult felületet biztosítson a felek számára.
 
+
 ## 2. Projektterv
 - **Developer Team**: Vámos Ákos János, Vámos Márton István
 
@@ -28,8 +29,6 @@ Felhasználó adatainak tárolása
 Bejelentkezés gomb: email cím és jelszó együttes megadásával beléphetünk a saját fiókunkba.
 Regisztrációs gomb: az itt megadott adatainkkal kitöltve tudunk fiókot létrehozni.
 Túraesemény feltöltése gomb: Túraesemény feltöltésére szolgál.
-Túraesemény szerkesztése gomb: Túraesemény utólagos szerkesztése miatt.
-Túraesemény archiválása: Soft delete
 
 ### Nem funkcionális követelmények:
 A felhasználók nem jutnak hozzá más felhasználók személyes adataihoz a nevükön és az azonosítókon kívül.
@@ -47,10 +46,9 @@ IntelliJ IDEA Ultimate (a kódoláshoz használt IDE)
 
 Sublime Text vagy egyéb szöveg- és forráskód-szerkesztő (a dokumentáció kidolgozásához, markdown kiterjesztésű formátumban)
 
-Dbdiagramm - adatbázisterv megvalósításához
+XAMPP tervező nézet - adatbázisterv megvalósításához
 
 Diagrams.net - az ábárák megvalósításához
-
 
 
 ## 5. Funkcionális terv
