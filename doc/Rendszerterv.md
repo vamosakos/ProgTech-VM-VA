@@ -117,11 +117,16 @@ A felhasználók adatai titkosítással védeve vannak.
 
 
 ## 8. Adatbázis terv
-![Adatbázis terv](img/database_plan.png)
+![Adatbázis terv](/img/database_plan.png)
 
 
 ## 9. Telepítési terv
-*WIP*
+1. A GitHub [repository](https://github.com/vamosakos/ProgTech-VM-VA) letöltése/klónozása
+2. A letöltött fájlok saját könyvtárba szervezése
+3. Apache, MySQL elindítása a XAMPP vezérlő pultban ![XAMPP icon](img/xampp_icon.png)
+4. A database.sql importálása a lokális adatbázisba
+5. Könyvtár megnyitása IntelliJ IDEA-ban
+6. Program futtatása (Main) ![Run icon](img/run_icon.png)
 
 
 ## 10. Implementációs terv
