@@ -4,7 +4,7 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.*;
 import java.sql.*;
 public class TableLoad {
-    public void tableLoad(JTable dashboard) {
+    public static void tableLoad(JTable dashboard) {
         PreparedStatement pst;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
         final String USERNAME = "root";

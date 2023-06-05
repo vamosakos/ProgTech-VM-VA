@@ -15,7 +15,6 @@ import java.util.Date;
 import model.*;
 import strategy.*;
 import util.*;
-import log.*;
 
 public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStrategy {
 
@@ -34,7 +33,6 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
     private JCheckBox cbLunch;
     private Tour tour;
     private JDateChooser datechooser = new JDateChooser();
-    private TableLoad tableLoad = new TableLoad();
     private TourBase tourBase;
 
     //endregion
@@ -54,7 +52,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
 
         datechooser.setDateFormatString("dd/MM/yyyy");
         jpDatePicker.add(datechooser);
-        tableLoad.tableLoad(evenTourDashboardTable);
+        TableLoad.tableLoad(evenTourDashboardTable);
 
         btnAdd.addActionListener(new ActionListener() {
             @Override
@@ -260,7 +258,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
 
             stmt.close();
             conn.close();
-            tableLoad.tableLoad(evenTourDashboardTable);
+            TableLoad.tableLoad(evenTourDashboardTable);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -322,7 +320,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
 
             stmt.close();
             conn.close();
-            tableLoad.tableLoad(evenTourDashboardTable);
+            TableLoad.tableLoad(evenTourDashboardTable);
 
         } catch (Exception e) {
             e.printStackTrace();

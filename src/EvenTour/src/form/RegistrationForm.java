@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import util.Encryptor;
 import model.*;
-import log.*;
+import util.logger;
 
 public class RegistrationForm extends JDialog{
 

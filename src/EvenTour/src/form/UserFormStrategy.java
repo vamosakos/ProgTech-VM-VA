@@ -10,7 +10,6 @@ import java.sql.*;
 import strategy.*;
 import model.*;
 import util.*;
-import log.*;
 
 
 public class UserFormStrategy extends JFrame implements UserDashboardLoadStrategy {
@@ -24,7 +23,6 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
     private JTable evenTourDashboardTable;
     private User loggedInUser;
     private UserTour userTour;
-    private TableLoad tableLoad = new TableLoad();
 
     //endregion
 
@@ -41,7 +39,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         loggedInUser = user;
-        tableLoad.tableLoad(evenTourDashboardTable);
+        TableLoad.tableLoad(evenTourDashboardTable);
 
         btnSignUp.addActionListener(new ActionListener() {
             @Override

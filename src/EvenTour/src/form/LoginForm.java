@@ -8,7 +8,7 @@ import java.sql.*;
 import util.Encryptor;
 import strategy.*;
 import model.*;
-import log.*;
+import util.logger;
 
 public class LoginForm extends JDialog {
 

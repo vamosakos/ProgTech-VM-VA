@@ -1,5 +1,5 @@
 import form.LoginForm;
-import log.*;
+import util.logger;
 
 public class Main {
     public static void main(String[] args) {
