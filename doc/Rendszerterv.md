@@ -92,7 +92,7 @@ Diagrams.net - az ábárák megvalósításához
 | Jogosultság | T1 | Bejelentkezési felület   | 1.0 | A felhasználó az email címe és jelszava segítségével bejelentkezhet. Ha a megadott email vagy jelszó nem megfelelő, akkor a felhasználó hibaüzenetet kap.                                                               |
 | Jogosultság | T2 | Regisztráció | 1.0 | A felhasználó az email címével és jelszavának megadásával regisztrálja magát. A jelszó tárolása kódolva történik az adatbázisban. Ha valamelyik adat ezek közül hiányzik vagy nem felel meg a követelményeknek, akkor a rendszer értesíti erről a felhasználót. |
 | Jogosultság | T3 | Kijelentkezés | 1.0 | A bejelentkezett felhasználók a kijelentkezés gombra kattintva kitudnak jelentkezni, amely a bejelentkező felületre irányíja őket. |
-| Feltöltés | T4 | Túraesemény feltöltése | 1.0 | A túrát szervezőknek lehetőségük van túraesemények feltöltésére. |
+| Jogosultásg | T4 | Túraesemények megtekintése + hozzá tartozó funkciók | 1.0 | Túrák megjelenítése, illetve a túrát szervezőknek lehetőségük van túraesemények feltöltésére és törlésére. A túrára jelentkezőknek pedig a jelentkezésre és leíratkozásra. |
 
 
 ## 6. Fizikai környezet
@@ -108,7 +108,12 @@ A felhasználók adatai titkosítással védeve vannak.
 
 
 ## 7. Architekturális terv
-*WIP*
+**Backend:**
+- A rendszerhez szükséges egy adatbázis szeverhez való csatlakozás. Ehhez a XAMPP segítségével MySQL-t használunk.
+- A kliens java programnyelven készült.
+
+**Frontend:**
+- Az applikáció megjelenítéséhez Java Swing GUI-t használunk.
 
 
 ## 8. Adatbázis terv
