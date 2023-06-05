@@ -61,6 +61,7 @@ public class LoginForm extends JDialog {
                 }
             }
         });
+
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

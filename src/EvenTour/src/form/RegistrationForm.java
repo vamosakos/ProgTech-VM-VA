@@ -127,7 +127,7 @@ public class RegistrationForm extends JDialog{
         }
     }
 
-    private User addUserToDatabase(String full_name, String email, String password, int permission) {
+    protected User addUserToDatabase(String full_name, String email, String password, int permission) {
         User user = null;
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
         final String USERNAME = "root";
