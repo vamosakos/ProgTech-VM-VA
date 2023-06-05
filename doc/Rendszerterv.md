@@ -124,7 +124,7 @@ A felhasználók adatai titkosítással védeve vannak.
 1. A GitHub [repository](https://github.com/vamosakos/ProgTech-VM-VA) letöltése/klónozása
 2. A letöltött fájlok saját könyvtárba szervezése
 3. Apache, MySQL elindítása a XAMPP vezérlő pultban ![XAMPP icon](/img/xampp_icon.png)
-4. A database.sql importálása a lokális adatbázisba
+4. A eventour.sql importálása a lokális adatbázisba
 5. Könyvtár megnyitása IntelliJ IDEA-ban
 6. Program futtatása (Main) ![Run icon](/img/run_icon.png)
 

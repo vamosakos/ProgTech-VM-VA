@@ -69,7 +69,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
         btnLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                logger.writeToLog("Clicked on logout button - logged out");
+                Logger.writeToLog("Clicked on logout button - logged out");
                 dispose();
                 new LoginForm(null);
             }
@@ -134,7 +134,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
 
     //region add / delete methods
     private void addTour() {
-        logger.writeToLog("Clicked on adding tour button");
+        Logger.writeToLog("Clicked on adding tour button");
         try {
             Integer.parseInt(tfDistance.getText());
             Integer.parseInt(tfPrice.getText());
@@ -143,7 +143,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
                     "Invalid format or missing field(s)",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Failed - due to invalid format or missing filed(s)");
+                    Logger.writeToLog("Failed - due to invalid format or missing filed(s)");
             return;
         }
 
@@ -190,7 +190,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
                     "Please enter all fields",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Failed - empty filed(s)");
+                    Logger.writeToLog("Failed - empty filed(s)");
             return;
         }
 
@@ -199,7 +199,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
                     "The distance must be greater than 0",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Failed - invalid distance value");
+                    Logger.writeToLog("Failed - invalid distance value");
             return;
         }
 
@@ -208,7 +208,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
                     "The price must be more than 500 HUF",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Failed - invalid price value");
+                    Logger.writeToLog("Failed - invalid price value");
             return;
         }
 
@@ -219,14 +219,14 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
                     "Tour successfully added",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
-                    logger.writeToLog("Success - new tour added");
+                    Logger.writeToLog("Success - new tour added");
         }
         else {
             JOptionPane.showMessageDialog(this,
                     "Failed to add new tour",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Add tour failed");
+                    Logger.writeToLog("Add tour failed");
         }
     }
     private Tour addTourToDatabase(TourBase tourBase) {
@@ -268,7 +268,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
     }
 
     private void deleteTour() {
-        logger.writeToLog("Clicked on delete tour button");
+        Logger.writeToLog("Clicked on delete tour button");
         try {
             Integer.parseInt(tfId.getText());
         } catch (NumberFormatException e) {
@@ -276,7 +276,7 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
                     "Please enter a valid tour id",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Failed - invalid tour id");
+                    Logger.writeToLog("Failed - invalid tour id");
             return;
         }
 
@@ -288,14 +288,14 @@ public class AdminFormStrategy extends JDialog implements AdminDashboardLoadStra
                     "Tour successfully deleted",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
-                    logger.writeToLog("Success - tour deleted");
+                    Logger.writeToLog("Success - tour deleted");
         }
         else {
             JOptionPane.showMessageDialog(this,
                     "Failed to delete tour",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Failed - invalid tour id");
+                    Logger.writeToLog("Failed - invalid tour id");
         }
     }
     private Tour deleteTourFromDatabase(int id) {

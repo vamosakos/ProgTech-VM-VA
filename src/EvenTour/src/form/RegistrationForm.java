@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import util.Encryptor;
 import model.*;
-import util.logger;
+import util.Logger;
 
 public class RegistrationForm extends JDialog{
 
@@ -43,7 +43,7 @@ public class RegistrationForm extends JDialog{
         btnBackToLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                logger.writeToLog("Clicked on back to login button - login window opened");
+                Logger.writeToLog("Clicked on back to login button - login window opened");
                 dispose();
                 new LoginForm(null);
             }
@@ -61,13 +61,13 @@ public class RegistrationForm extends JDialog{
         String password = String.valueOf(pfPassword.getPassword());
         String passwordAgain = String.valueOf(pfPasswordAgain.getPassword());
         int permission = 0;
-        logger.writeToLog("Registration started");
+        Logger.writeToLog("Registration started");
         if (full_name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "Please enter all fields",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Registration failed - empty fields");
+                    Logger.writeToLog("Registration failed - empty fields");
             return;
         }
 
@@ -76,7 +76,7 @@ public class RegistrationForm extends JDialog{
                     "Password does not match",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Registration failed - passwords are not matching");
+                    Logger.writeToLog("Registration failed - passwords are not matching");
             return;
         }
 
@@ -85,7 +85,7 @@ public class RegistrationForm extends JDialog{
                     "The name must be more than 1 character",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Registration failed - not enough character in name field");
+                    Logger.writeToLog("Registration failed - not enough character in name field");
             return;
         }
 
@@ -94,7 +94,7 @@ public class RegistrationForm extends JDialog{
                     "The name cannot contain number",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Registration failed - the name field is containing number(s)");
+                    Logger.writeToLog("Registration failed - the name field is containing number(s)");
             return;
         }
 
@@ -103,7 +103,7 @@ public class RegistrationForm extends JDialog{
                     "The password must be more than 4 character",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Registration failed - not enough character in password field");
+                    Logger.writeToLog("Registration failed - not enough character in password field");
             return;
         }
 
@@ -113,7 +113,7 @@ public class RegistrationForm extends JDialog{
                     "Registration successful",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
-                    logger.writeToLog("Registration success");
+                    Logger.writeToLog("Registration success");
             dispose();
             new LoginForm(null);
 
@@ -123,7 +123,7 @@ public class RegistrationForm extends JDialog{
                     "Failed to register new user",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
-                    logger.writeToLog("Registration failed - got null user / database connection error");
+                    Logger.writeToLog("Registration failed - got null user / database connection error");
         }
     }
 
@@ -148,7 +148,7 @@ public class RegistrationForm extends JDialog{
                             "This user is already exist",
                             "Try again",
                             JOptionPane.ERROR_MESSAGE);
-                            logger.writeToLog("Registration failed - already existing user");
+                            Logger.writeToLog("Registration failed - already existing user");
                 }
             }
             else {

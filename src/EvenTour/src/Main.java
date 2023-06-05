@@ -1,9 +1,9 @@
 import form.LoginForm;
-import util.logger;
+import util.Logger;
 
 public class Main {
     public static void main(String[] args) {
-        logger.writeToLog("Application started with login window");
+        Logger.writeToLog("Application started with login window");
         new LoginForm(null);
     }
 }
