@@ -8,6 +8,7 @@ import java.sql.*;
 import util.Encryptor;
 import strategy.*;
 import model.*;
+import log.*;
 
 public class LoginForm extends JDialog {
 
@@ -39,14 +40,16 @@ public class LoginForm extends JDialog {
                 String password = String.valueOf(pfPassword.getPassword());
 
                 user = getAuthenticatedUser(email, password);
-
+                logger.writeToLog("User verification started");
                 if (user != null) {
                     dispose();
                     if (user.getPermission() == 1) {
                         new PermissionProcessor(PermissionType.ADMIN, user);
+                        logger.writeToLog("Success - ADMIN logged in");
                     }
                     else {
                         new PermissionProcessor(PermissionType.USER, user);
+                        logger.writeToLog("Success - USER logged in");
                     }
                 }
                 else {
@@ -54,12 +57,14 @@ public class LoginForm extends JDialog {
                             "Email or Password Invalid",
                             "Try again",
                             JOptionPane.ERROR_MESSAGE);
+                            logger.writeToLog("Login failed - email or password invalid");
                 }
             }
         });
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                logger.writeToLog("Clicked on registration button - registration window opened");
                 dispose();
                 new RegistrationForm(null);
             }

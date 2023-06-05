@@ -10,6 +10,7 @@ import java.sql.*;
 import strategy.*;
 import model.*;
 import util.*;
+import log.*;
 
 
 public class UserFormStrategy extends JFrame implements UserDashboardLoadStrategy {
@@ -57,6 +58,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
         btnLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                logger.writeToLog("Clicked on logout button - logged out");
                 dispose();
                 new LoginForm(null);
             }
@@ -111,6 +113,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
 
     //region add / delete methods
     private void signUpTour() {
+        logger.writeToLog("Clicked on sign up tour button");
         try {
             Integer.parseInt(tfId.getText());
         } catch (NumberFormatException e) {
@@ -118,6 +121,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
                     "Please enter a valid tour id",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
+                    logger.writeToLog("Failed - invalid tour id");
             return;
         }
         int tourId = Integer.parseInt(tfId.getText());
@@ -129,12 +133,14 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
                     "Successfully signed up for the tour",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
+                    logger.writeToLog("Success - signed up for the tour");
         }
         else {
             JOptionPane.showMessageDialog(this,
                     "Failed to sign up for the tour",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
+                    logger.writeToLog("Failed - got back null value");
         }
     }
     private UserTour signUpTourToDatabase(int evenTourUserId, int evenTourTourId) {
@@ -159,6 +165,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
                             "You already signed up for this tour",
                             "Try again",
                             JOptionPane.ERROR_MESSAGE);
+                            logger.writeToLog("Failed - already signed up for this tour");
                 }
             }
             else {
@@ -199,6 +206,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
 
 
     private void unsubscribeTour() {
+        logger.writeToLog("Clicked on unsubscribe from tour button");
         try {
             Integer.parseInt(tfId.getText());
         } catch (NumberFormatException e) {
@@ -206,6 +214,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
                     "Please enter a valid tour id",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
+                    logger.writeToLog("Failed - invalid tour id");
             return;
         }
 
@@ -218,12 +227,14 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
                     "Successfully unsubscribed from tour",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
+                    logger.writeToLog("Success - unsubscribed from the tour");
         }
         else {
             JOptionPane.showMessageDialog(this,
                     "Failed to unsubscribe from tour",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
+                    logger.writeToLog("Failed - invalid tour id");
         }
     }
     private UserTour deleteTourFromDatabase(int userId, int tourId) {

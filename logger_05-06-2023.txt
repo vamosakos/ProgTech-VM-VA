@@ -1,0 +1,13 @@
+05-06-2023 16:22:07 : Application started with login window
+05-06-2023 16:22:14 : Clicked on registration button - registration window opened
+05-06-2023 16:22:19 : Clicked on back to login button - login window opened
+05-06-2023 16:22:28 : User verification started
+05-06-2023 16:22:28 : Login failed - email or password invalid
+05-06-2023 16:22:35 : Clicked on registration button - registration window opened
+05-06-2023 16:22:39 : Clicked on back to login button - login window opened
+05-06-2023 16:22:46 : User verification started
+05-06-2023 16:22:46 : Success - ADMIN logged in
+05-06-2023 16:22:51 : Clicked on logout button - logged out
+05-06-2023 16:23:03 : User verification started
+05-06-2023 16:23:03 : Success - USER logged in
+05-06-2023 16:23:05 : Clicked on logout button - logged out
