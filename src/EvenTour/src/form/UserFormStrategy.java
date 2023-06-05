@@ -40,7 +40,7 @@ public class UserFormStrategy extends JFrame implements UserDashboardLoadStrateg
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         loggedInUser = user;
         TableLoad.tableLoad(evenTourDashboardTable);
-
+        tfId.setEnabled(false);
         btnSignUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -142,17 +142,17 @@ A felhasználók adatai titkosítással védeve vannak.
 
 
 ## 11. Tesztterv
-Az alkalmazáson meglévő funkciók tesztelésére unit teszteket alkalmazunk.
-- [ ] Regisztráció - érvényes inputokkal
-- [ ] Regisztráció - érvénytelen inputokkal
-- [ ] Bejelentkezés - érvényes inputokkal
-- [ ] Bejelentkezés - érvénytelen inputokkal
-- [ ] Túraesemény létrehozása
-- [ ] Túraesemény törlése
-- [ ] Túraeseményre jelentkezés
-- [ ] (Decorator tervezési minta működése)
-- [ ] (Stratégia tervezési mintha működése)
-- [ ] Gombok megfelelő működése
+Az alkalmazáson meglévő funkciók tesztelésére unit és manuális teszteket alkalmazunk.
+- [x] Regisztráció - érvényes inputokkal
+- [x] Regisztráció - érvénytelen inputokkal
+- [x] Bejelentkezés - érvényes inputokkal
+- [x] Bejelentkezés - érvénytelen inputokkal
+- [x] Túraesemény létrehozása
+- [x] Túraesemény törlése
+- [x] Túraeseményre jelentkezés
+- [x] (Decorator tervezési minta működése)
+- [x] (Stratégia tervezési mintha működése)
+- [x] Gombok megfelelő működése
 
 
 ## 12. Használt technológiák
