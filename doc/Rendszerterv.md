@@ -117,7 +117,7 @@ A felhasználók adatai titkosítással védeve vannak.
 
 
 ## 8. Adatbázis terv
-*WIP*
+![Adatbázis terv](img/database_plan.png)
 
 
 ## 9. Telepítési terv
