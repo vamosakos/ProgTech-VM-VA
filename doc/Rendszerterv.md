@@ -19,7 +19,7 @@ Ehhez mindössze elegendő egy egyszerű regisztráció, illetve a túrára val�
 | Túráról lejelentkezés       | A felhasználó lejelentkeztetése a túráról           |
 
 ## 3. Üzleti feladatok modellje
-![Üzleti feladatok modellje](img/model_of_business_processes)
+![Üzleti feladatok modellje](/img/model_of_business_processes.png)
 
 
 ## 4. Követelmények
