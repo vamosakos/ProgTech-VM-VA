@@ -123,18 +123,23 @@ A felhasználók adatai titkosítással védeve vannak.
 ## 9. Telepítési terv
 1. A GitHub [repository](https://github.com/vamosakos/ProgTech-VM-VA) letöltése/klónozása
 2. A letöltött fájlok saját könyvtárba szervezése
-3. Apache, MySQL elindítása a XAMPP vezérlő pultban ![XAMPP icon](img/xampp_icon.png)
+3. Apache, MySQL elindítása a XAMPP vezérlő pultban ![XAMPP icon](/img/xampp_icon.png)
 4. A database.sql importálása a lokális adatbázisba
 5. Könyvtár megnyitása IntelliJ IDEA-ban
-6. Program futtatása (Main) ![Run icon](img/run_icon.png)
+6. Program futtatása (Main) ![Run icon](/img/run_icon.png)
 
 
 ## 10. Implementációs terv
 - Az OCP (Open-Closed Principle) és a SRP (Single Responsiblity Principle) betartásával készüljön az alkalmazás java programnyelven.
-- Az alkalmazásban felhasznált további tervezési minták a Stratégia és az Observer. 
+- Az alkalmazásban felhasznált további tervezési minták a **Stratégia** és a **Decorator**.
+    - a bejelentkezett felhasználó jogosultsága alapján történjen a stratégia kiválasztása
+    - a stratégia döntse el, hogy melyik dashboard ablakot nyissa meg és ez által milyen funkciók legyenek elérhetőek ADMIM / (default) USER
+    - dekorátor segítégével legyen elkülöníthető ha egy túra létrehozása túra vezetővel vagy anélkül történik, illetve az is, ha a túra mellé jár ebéd vagy nem
+    - fontos, hogy ha van túra vezető akkor kötelezően kell lennie ebédnek is
 - Az adatok tárolása adatbázisban történik meg.
 - Logolás használata
 - Unit tesztek használata 
+
 
 ## 11. Tesztterv
 Az alkalmazáson meglévő funkciók tesztelésére unit teszteket alkalmazunk.
@@ -145,7 +150,7 @@ Az alkalmazáson meglévő funkciók tesztelésére unit teszteket alkalmazunk.
 - [ ] Túraesemény létrehozása
 - [ ] Túraesemény törlése
 - [ ] Túraeseményre jelentkezés
-- [ ] (Observer tervezési minta működése)
+- [ ] (Decorator tervezési minta működése)
 - [ ] (Stratégia tervezési mintha működése)
 - [ ] Gombok megfelelő működése
 
