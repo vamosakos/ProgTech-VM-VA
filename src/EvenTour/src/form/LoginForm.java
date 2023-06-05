@@ -75,7 +75,7 @@ public class LoginForm extends JDialog {
     //endregion
 
     //region user verification
-    private User getAuthenticatedUser(String email, String password) {
+    protected User getAuthenticatedUser(String email, String password) {
         User user = null;
 
         final String DB_URL ="jdbc:mysql://localhost/eventour?serverTimezone=UTC";
